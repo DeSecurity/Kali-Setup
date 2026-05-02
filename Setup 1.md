@@ -109,3 +109,95 @@ ensure copy and paste is set to bidirectional
 
 ---
 take a snapshot 2
+
+stuff to add to install
+
+nxcspray,
+booodhound docker container,
+
+### 1) Install Docker on Kali
+
+A simple Kali-compatible route is:
+
+```
+sudo apt updatesudo apt install -y docker.io docker-compose-v2 wget tarsudo systemctl enable --now dockersudo usermod -aG docker $USERnewgrp docker
+```
+
+SpecterOps requires Docker for CE, though their docs reference Docker Desktop generically.
+
+### 2) Download the latest BloodHound CLI
+
+For amd64 Kali:
+
+```
+wget https://github.com/SpecterOps/bloodhound-cli/releases/latest/download/bloodhound-cli-linux-amd64.tar.gz
+```
+
+That is the official documented Linux download URL.
+
+If your Kali is ARM, use the matching ARM release from the same BloodHound CLI releases page. SpecterOps notes you should pick the binary for your architecture.
+
+### 3) Extract it
+
+```
+tar -xvzf bloodhound-cli-linux-amd64.tar.gzchmod +x bloodhound-cli
+```
+
+The `tar -xvzf` step is in the official quickstart.
+
+### 4) Install BloodHound CE
+
+```
+./bloodhound-cli install
+```
+
+This is the documented install command.
+
+### 5) Save the generated admin password
+
+When setup finishes, the CLI prints a randomly generated password for the `admin` account. SpecterOps explicitly tells you to keep that password.
+
+### 6) Open the UI
+
+Browse to:
+
+```
+http://localhost:8080/ui/login
+```
+
+Log in with:
+
+```
+username: adminpassword: <generated password from install>
+```
+
+Then change the password when prompted.
+
+### 7) If you lose the password
+
+Run:
+
+```
+./bloodhound-cli resetpwd
+```
+
+That is the official reset command.
+
+```
+sudo apt update  
+sudo apt install -y docker.io docker-compose
+```
+
+
+# Binaries to install
+
+## Linux
+nxcspray,
+ligolo-ng proxy
+
+## Windows
+
+Ligolo-ng agent,
+get linux proxy, and windows/linux agent,
+
+Daniels Github Binaries
