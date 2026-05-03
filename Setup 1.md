@@ -192,6 +192,49 @@ sudo apt install -y docker.io docker-compose
 ```
 
 
+Your BloodHound stack path is:
+
+```
+/root/.config/bloodhound
+```
+
+## Bring stack down
+
+```
+sudo sucd /root/.config/bloodhounddocker compose down
+```
+
+## Bring stack up
+
+```
+sudo sucd /root/.config/bloodhounddocker compose up -d
+```
+
+## Check status
+
+```
+docker ps
+```
+
+## Open BloodHound
+
+```
+http://localhost:8080/ui/login
+```
+
+## One-line commands from anywhere
+
+Down:
+
+```
+sudo docker compose -f /root/.config/bloodhound/docker-compose.yml down
+```
+
+Up:
+
+```
+sudo docker compose -f /root/.config/bloodhound/docker-compose.yml up -d
+```
 # Binaries to install
 
 ## Linux
