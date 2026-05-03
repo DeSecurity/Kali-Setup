@@ -120,7 +120,9 @@ booodhound docker container,
 A simple Kali-compatible route is:
 
 ```
-sudo apt updatesudo apt install -y docker.io docker-compose-v2 wget tarsudo systemctl enable --now dockersudo usermod -aG docker $USERnewgrp docker
+sudo apt update
+sudo apt install -y docker.io docker-compose-v2 wget tarsudo systemctl enable --now docker
+sudo usermod -aG docker $USERnewgrp docker
 ```
 
 SpecterOps requires Docker for CE, though their docs reference Docker Desktop generically.
@@ -140,7 +142,8 @@ If your Kali is ARM, use the matching ARM release from the same BloodHound CLI r
 ### 3) Extract it
 
 ```
-tar -xvzf bloodhound-cli-linux-amd64.tar.gzchmod +x bloodhound-cli
+tar -xvzf bloodhound-cli-linux-amd64.tar.gz
+chmod +x bloodhound-cli
 ```
 
 The `tar -xvzf` step is in the official quickstart.
