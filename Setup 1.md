@@ -246,4 +246,6 @@ ligolo-ng proxy
 Ligolo-ng agent,
 get linux proxy, and windows/linux agent,
 
+haiti, hash identifier
+
 Daniels Github Binaries
