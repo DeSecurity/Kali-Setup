@@ -249,3 +249,4 @@ get linux proxy, and windows/linux agent,
 haiti, hash identifier
 
 Daniels Github Binaries
+setup kerbrute
