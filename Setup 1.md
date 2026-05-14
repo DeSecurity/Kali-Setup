@@ -249,4 +249,9 @@ get linux proxy, and windows/linux agent,
 haiti, hash identifier
 
 Daniels Github Binaries
+
 setup kerbrute
+wget https://github.com/ropnop/kerbrute/releases/latest/download/kerbrute_linux_amd64
+curl -L -o kerbrute https://github.com/ropnop/kerbrute/releases/latest/download/kerbrute_linux_amd64
+chmod +x kerbrute
+sudo mv kerbrute /usr/local/bin/
