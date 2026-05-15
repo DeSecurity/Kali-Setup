@@ -37,3 +37,8 @@ sudo apt update && sudo apt install -y python3 python3-pip rlwrap && python3 -m 
 ```
 sudo apt update && sudo apt install -y pipx && pipx ensurepath && pipx install git+https://github.com/brightio/penelope
 ```
+
+Obsidian
+```
+wget -O /tmp/obsidian.deb "$(curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | grep browser_download_url | grep amd64.deb | cut -d '"' -f 4)" && sudo apt install -y /tmp/obsidian.deb
+```
