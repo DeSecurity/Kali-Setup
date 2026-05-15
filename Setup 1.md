@@ -73,9 +73,6 @@ wget
 linpeas
 winpeas
 
-
-apt install seclists -y
-
 gzip -d /usr/share/wordlists/rockyou.txt
 
 consider installing gedit
@@ -118,10 +115,9 @@ booodhound docker container,
 ### 1) Install Docker on Kali
 
 A simple Kali-compatible route is:
-
 ```
 sudo apt update
-sudo apt install -y docker.io docker-compose-v2 wget tarsudo systemctl enable --now docker
+sudo apt install -y docker.io docker-compose docker-compose-v2 wget tarsudo systemctl enable --now docker
 sudo usermod -aG docker $USERnewgrp docker
 ```
 
@@ -130,9 +126,8 @@ SpecterOps requires Docker for CE, though their docs reference Docker Desktop ge
 ### 2) Download the latest BloodHound CLI
 
 For amd64 Kali:
-
 ```
-wget https://github.com/SpecterOps/bloodhound-cli/releases/latest/download/bloodhound-cli-linux-amd64.tar.gz
+sudo wget https://github.com/SpecterOps/bloodhound-cli/releases/latest/download/bloodhound-cli-linux-amd64.tar.gz
 ```
 
 That is the official documented Linux download URL.
@@ -140,22 +135,17 @@ That is the official documented Linux download URL.
 If your Kali is ARM, use the matching ARM release from the same BloodHound CLI releases page. SpecterOps notes you should pick the binary for your architecture.
 
 ### 3) Extract it
-
 ```
-tar -xvzf bloodhound-cli-linux-amd64.tar.gz
-chmod +x bloodhound-cli
+sudo tar -xvzf bloodhound-cli-linux-amd64.tar.gz
+sudo chmod +x bloodhound-cli
 ```
 
 The `tar -xvzf` step is in the official quickstart.
 
 ### 4) Install BloodHound CE
-
 ```
-./bloodhound-cli install
+sudo ./bloodhound-cli install
 ```
-
-This is the documented install command.
-
 ### 5) Save the generated admin password
 
 When setup finishes, the CLI prints a randomly generated password for the `admin` account. SpecterOps explicitly tells you to keep that password.
@@ -186,28 +176,11 @@ Run:
 
 That is the official reset command.
 
-```
-sudo apt update  
-sudo apt install -y docker.io docker-compose
-```
-
 
 Your BloodHound stack path is:
 
 ```
 /root/.config/bloodhound
-```
-
-## Bring stack down
-
-```
-sudo sucd /root/.config/bloodhounddocker compose down
-```
-
-## Bring stack up
-
-```
-sudo sucd /root/.config/bloodhounddocker compose up -d
 ```
 
 ## Check status
@@ -239,19 +212,48 @@ sudo docker compose -f /root/.config/bloodhound/docker-compose.yml up -d
 
 ## Linux
 nxcspray,
+```
+sudo curl -L https://raw.githubusercontent.com/NTHSec/nxcspray/main/nxcspray -o /usr/local/bin/nxcspray && sudo chmod +x /usr/local/bin/nxcspray
+```
+
+haiti
+```
+sudo apt update && sudo apt install -y ruby ruby-dev build-essential && sudo gem install haiti-hash
+```
+
 ligolo-ng proxy
 
+Use this for **Linux proxy + Linux agent + Windows agent** from the current GitHub release `v0.8.3`:
+
+```
+mkdir -p ~/tools/ligolo && cd ~/tools/ligolo && wget -O proxy_linux.tar.gz https://github.com/nicocha30/ligolo-ng/releases/download/v0.8.3/ligolo-ng_proxy_0.8.3_linux_amd64.tar.gz && wget -O agent_linux.tar.gz https://github.com/nicocha30/ligolo-ng/releases/download/v0.8.3/ligolo-ng_agent_0.8.3_linux_amd64.tar.gz && wget -O agent_windows.zip https://github.com/nicocha30/ligolo-ng/releases/download/v0.8.3/ligolo-ng_agent_0.8.3_windows_amd64.zip && tar -xzf proxy_linux.tar.gz && tar -xzf agent_linux.tar.gz && unzip -o agent_windows.zip && chmod +x proxy agent
+```
+
+Start Linux proxy:
+
+```
+cd ~/tools/ligolo && sudo ./proxy -selfcert
+```
+
+Linux agent command:
+
+```
+./agent -connect YOUR_KALI_IP:11601 -ignore-cert
+```
+
+Windows agent command:
+
+```
+.\agent.exe -connect YOUR_KALI_IP:11601 -ignore-cert
+```
+
 ## Windows
-
-Ligolo-ng agent,
-get linux proxy, and windows/linux agent,
-
-haiti, hash identifier
-
 Daniels Github Binaries
 
 setup kerbrute
+```
 wget https://github.com/ropnop/kerbrute/releases/latest/download/kerbrute_linux_amd64
-curl -L -o kerbrute https://github.com/ropnop/kerbrute/releases/latest/download/kerbrute_linux_amd64
+mv kerbrute_linux_amd64 kerbrute
 chmod +x kerbrute
 sudo mv kerbrute /usr/local/bin/
+```
