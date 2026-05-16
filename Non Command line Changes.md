@@ -64,6 +64,8 @@ increase terminal font to 20
 color scheme changed to linux
 checkbox draw a border
 
+remember to change root terminal as well
+
 ---
 
 install addons 
