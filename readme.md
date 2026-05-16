@@ -37,15 +37,6 @@ go install github.com/hahwul/dalfox/v2@latest && \
 sudo cp ~/go/bin/dalfox /usr/local/bin/dalfox
 ```
 
-Clone common repos:
-
-```bash
-mkdir -p ~/tools && cd ~/tools && \
-git clone https://github.com/danielmiessler/SecLists.git && \
-git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git && \
-git clone https://github.com/projectdiscovery/nuclei-templates.git
-```
-
 ---
 
 ## 2. Pimp My Kali (Temporary Bootstrap)

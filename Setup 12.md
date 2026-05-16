@@ -15,10 +15,19 @@ sudo apt autoremove -y
 ## fixes
 ```
 sudo apt full-upgrade -y
-sudo apt install libgnuradio-qtgui3.10.12 spike
 sudo apt full-upgrade -y
-sudo apt install libqt5core5t64=5.15.17+dfsg-7+b1
+
 sudo apt autoremove -y && sudo apt clean
+```
+
+not upgradeing
+```
+sudo apt install libqt5core5t64=5.15.17+dfsg-7+b1
+```
+
+Not upgradeing
+```
+sudo apt install libgnuradio-qtgui3.10.12 spike
 ```
 # ssh rdp
 ```
