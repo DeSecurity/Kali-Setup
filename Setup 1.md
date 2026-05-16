@@ -117,8 +117,11 @@ booodhound docker container,
 A simple Kali-compatible route is:
 ```
 sudo apt update
-sudo apt install -y docker.io docker-compose docker-compose-v2 wget tarsudo systemctl enable --now docker
-sudo usermod -aG docker $USERnewgrp docker
+sudo apt install -y docker.io docker-compose
+wget tar
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+newgrp docker
 ```
 
 SpecterOps requires Docker for CE, though their docs reference Docker Desktop generically.
