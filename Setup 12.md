@@ -12,6 +12,14 @@ sudo apt update && sudo apt full-upgrade -y
 sudo apt autoremove -y
 ```
 
+## fixes
+```
+sudo apt full-upgrade -y
+sudo apt install libgnuradio-qtgui3.10.12 spike
+sudo apt full-upgrade -y
+sudo apt install libqt5core5t64=5.15.17+dfsg-7+b1
+sudo apt autoremove -y && sudo apt clean
+```
 # ssh rdp
 ```
 sudo apt update && sudo apt install -y openssh-server xrdp kali-desktop-xfce && sudo systemctl enable --now ssh xrdp
