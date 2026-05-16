@@ -61,3 +61,9 @@ df -h | grep windows-share
 ```
 
 Now it will auto-mount across reboots.
+
+test
+```
+ls -la /mnt/windows-share
+touch /mnt/windows-share/test-from-kali.txt
+```
