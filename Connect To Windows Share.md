@@ -31,13 +31,7 @@ sudo chmod 600 /etc/samba/windows-share.creds
 Test the mount manually first:
 
 ```
-sudo mount -t cifs //WINDOWS_IP/SHARENAME /mnt/windows-share -o credentials=/etc/samba/windows-share.creds,uid=$(id -u),gid=$(id -g)
-```
-
-Example:
-
-```
-sudo mount -t cifs //192.168.1.50/Files /mnt/windows-share -o credentials=/etc/samba/windows-share.creds,uid=$(id -u),gid=$(id -g)
+sudo mount -t cifs //172.16.15.12/KaliShare /mnt/windows-share -o credentials=/etc/samba/windows-share.creds,uid=$(id -u),gid=$(id -g)
 ```
 
 If that works, make it persistent:
@@ -49,18 +43,14 @@ sudo nano /etc/fstab
 Add this line:
 
 ```
-//WINDOWS_IP/SHARENAME /mnt/windows-share cifs credentials=/etc/samba/windows-share.creds,uid=1000,gid=1000,iocharset=utf8,nofail,x-systemd.automount,_netdev 0 0
-```
-
-Example:
-
-```
-//192.168.1.50/Files /mnt/windows-share cifs credentials=/etc/samba/windows-share.creds,uid=1000,gid=1000,iocharset=utf8,nofail,x-systemd.automount,_netdev 0 0
+//172.16.15.12/KaliShare /mnt/windows-share cifs credentials=/etc/samba/windows-share.creds,uid=1000,gid=1000,file_mode=0777,dir_mode=0777,iocharset=utf8,nofail,x-systemd.automount,_netdev 0 0
 ```
 
 Test without rebooting:
 
 ```
+sudo umount /mnt/windows-share
+sudo systemctl daemon-reload
 sudo mount -a
 ```
 
