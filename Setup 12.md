@@ -59,3 +59,4 @@ Obsidian
 ```
 wget -O /tmp/obsidian.deb "$(curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | grep browser_download_url | grep amd64.deb | cut -d '"' -f 4)" && sudo apt install -y /tmp/obsidian.deb
 ```
+
